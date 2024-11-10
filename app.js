@@ -1,5 +1,5 @@
 const qwerty = document.querySelector('#qwerty');
-const phrase = document.querySelector('#phrase');
+const phrase = document.getElementById('phrase');
 const overlay = document.querySelector('#overlay');
 const btnReset = document.querySelector('.btn__reset');
 
@@ -25,4 +25,13 @@ function getRandomPhraseAsArray (arr) {
     let randomPhrase = arr.slice(randomNumber, randomNumber + 1);
 
     return randomPhrase;
-}
+};
+
+function addPhraseToDisplay (text) {
+    let ul = phrase.querySelector("ul");
+    let li = document.createElement("li");
+    li.textContent = text;
+    li.className = 'letter';
+    ul.appendChild(li);
+    return ul;
+};
