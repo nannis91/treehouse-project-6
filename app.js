@@ -14,24 +14,38 @@ const phrases = [
     'Flowers bloom bright'
 ];
 
-// Event listner to the start game button
+// Event listner to the start game button.
 btnReset.addEventListener('click', (e) => {
     overlay.style.display = 'none'
+    addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 });
 
-// Function that returns a random array item from an array
+// Returns a random array item from an array.
 function getRandomPhraseAsArray (arr) {
     let randomNumber = Math.floor(Math.random()*arr.length);
     let randomPhrase = arr.slice(randomNumber, randomNumber + 1);
+    randomPhrase = randomPhrase.toString();
 
     return randomPhrase;
 };
 
+// Splits phrase in letters and appends li to phrase ul.
 function addPhraseToDisplay (text) {
     let ul = phrase.querySelector("ul");
-    let li = document.createElement("li");
-    li.textContent = text;
-    li.className = 'letter';
-    ul.appendChild(li);
-    return ul;
+    let letters = text.split('');
+    let element = text[0];
+
+    for (let i = 0; i < letters.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = letters[i];
+        ul.appendChild(li);
+        
+        // Sets class to li if space or letter
+        if (li.textContent === ' ') {
+            li.className = 'space';
+        } else {
+            li.className = 'letter';
+        }
+    }
+
 };
