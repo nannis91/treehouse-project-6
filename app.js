@@ -1,14 +1,17 @@
 const qwerty = document.getElementById('qwerty');
+const tries = document.querySelectorAll('.tries img');
 const phrase = document.getElementById('phrase');
 const overlay = document.querySelector('#overlay');
 const btnReset = document.querySelector('.btn__reset');
 
+let missed = 0;
+
 // Phrases to guess for the game
 const phrases = [
-    // 'forest whispers softly', 
-    // 'golden sunlight warms',
-    // 'rivers flow gently',
-    // 'mountains stand tall',
+    'forest whispers softly', 
+    'golden sunlight warms',
+    'rivers flow gently',
+    'mountains stand tall',
     'flowers bloom bright'
 ];
 
@@ -53,7 +56,7 @@ function checkLetter (value) {
     let listItems = phrase.querySelector('ul').childNodes;
 
     // Create a variable to store if a match is found and give it an initial value of null
-    let match = [];
+    let match = null;
     
     // Loop through all of the li elements. Remember: arrays start with index 0!
 
@@ -64,11 +67,26 @@ function checkLetter (value) {
             // If they match, add the “show” class to the li
             listItems[i].className = 'letter show';
             // If they match, store the button text in the match variable
-            match.push(listItems[i].textContent);
+            (match = match || []).push(listItems[i].textContent);
+        } else {
+
         }
     }
     // Once the loop completes, return the match variable
     return match;
+}
+
+function checkWin () {
+    let letters = phrase.querySelectorAll('ul li.letter').length;
+    let show = phrase.querySelectorAll('ul li.show').length;
+    
+    if (show >= letters) {
+        alert("Du har vunnit");
+
+    } else if (missed >= 5) {
+        alert("Du har förlorat");
+    }
+
 }
 
 // Checks if a button in QWERTY is clicked and returns the text of that button
@@ -76,9 +94,17 @@ qwerty.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON' && e.target.className != "chosen") {
         buttonText = e.target.innerHTML;
         e.target.className = "chosen";
-        checkLetter(buttonText);
-    } 
-});
+        let result = checkLetter(buttonText);
+
+        if (result === null) {
+            missed++
+            tries[missed -1].setAttribute("src", "images/lostHeart.png");
+        }
+        checkWin();
+  
+}});
+
+
 
 
 
