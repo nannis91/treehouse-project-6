@@ -49,40 +49,44 @@ function addPhraseToDisplay (text) {
     }
 };
 
+// Checks if a button in QWERTY is clicked and returns the text of that button
 qwerty.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON') {
-        let value = e.target.innerHTML;
-        console.log(value);
+        let buttonText = e.target.innerHTML;
+        return buttonText;
     }
 });
 
 
-// function checkLetter (value) {
+function checkLetter (value) {
 
     // Store all of the li elements in a variable inside checkLetter
-    //  let listItems = phrase.querySelectorAll('li');
+     let listItems = phrase.querySelectorAll('li');
 
     // Create a variable to store if a match is found and give it an initial value of null
-    // let match = null;
+    let match = null;
     
     // Loop through all of the li elements. Remember: arrays start with index 0!
 
-    // for ( let i = 0; i < listItems[i]; i++) {
+    for ( let i = 0; i < listItems[i]; i++) {
 
-    //     if (value === listItems[i].textContent()) {
-    //         li.className = 'show';
-    //         match = 
-    //     } 
-
-        
         // Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
-        // If they match, add the “show” class to the li
-        // If they match, store the button text in the match variable
+        if (value === listItems[i].textContent()) {
+            // If they match, add the “show” class to the li
+            li.className = 'show';
+            // If they match, store the button text in the match variable
+            match.push(listItems[i].textContent());
+        }
+    }
+    // Once the loop completes, return the match variable
+    return match;
+        
+}
 
-    // }
+
 
  
     
-    // Once the loop completes, return the match variable
+    
 
-// }
+
