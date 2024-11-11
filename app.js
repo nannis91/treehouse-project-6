@@ -8,11 +8,12 @@ let missed = 0;
 
 // Phrases to guess for the game
 const phrases = [
-    'forest whispers softly', 
-    'golden sunlight warms',
-    'rivers flow gently',
-    'mountains stand tall',
-    'flowers bloom bright'
+    // 'forest whispers softly', 
+    // 'golden sunlight warms',
+    // 'rivers flow gently',
+    // 'mountains stand tall',
+    // 'flowers bloom bright'
+    'hej'
 ];
 
 // Event listner to the start game button.
@@ -79,9 +80,24 @@ function checkLetter (value) {
 function checkWin () {
     let letters = phrase.querySelectorAll('ul li.letter').length;
     let show = phrase.querySelectorAll('ul li.show').length;
+    let ul = phrase.querySelector('ul');
+    let buttons = qwerty.querySelectorAll('button');
     
     if (show >= letters) {
-        alert("Du har vunnit");
+        overlay.style.display = 'flex'
+        ul.innerHTML = '';
+        missed = 0;
+
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].className = ''; 
+        }
+        
+        for (let i = 0; i < tries.length; i++) {
+            tries[i].setAttribute("src", "images/liveHeart.png");
+        }
+
+        
 
     } else if (missed >= 5) {
         alert("Du har förlorat");
