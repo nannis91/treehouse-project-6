@@ -60,12 +60,12 @@ function checkLetter (value) {
     
     // Loop through all of the li elements. Remember: arrays start with index 0!
 
-    for ( let i = 0; i < listItems[i]; i++) {
+    for ( let i = 0; i < listItems.length; i++) {
 
         // Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
-        if (value === listItems[i].textContent()) {
+        if (value === listItems[i].textContent) {
             // If they match, add the “show” class to the li
-            li.className = 'show';
+            li[i].className = 'show';
             // If they match, store the button text in the match variable
             // match.push(listItems[i].textContent());
         }
@@ -78,6 +78,7 @@ function checkLetter (value) {
 qwerty.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON') {
         buttonText = e.target.innerHTML;
+        checkLetter(buttonText);
     }
 });
 
