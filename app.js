@@ -2,15 +2,16 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const overlay = document.querySelector('#overlay');
 const btnReset = document.querySelector('.btn__reset');
+let buttonText = "";
 
 let score = 0;
 
 // Phrases to guess for the game
 const phrases = [
-    'Forest whispers softly', 
-    'Golden sunlight warms',
-    'Rivers flow gently',
-    'Mountains stand tall',
+    // 'Forest whispers softly', 
+    // 'Golden sunlight warms',
+    // 'Rivers flow gently',
+    // 'Mountains stand tall',
     'Flowers bloom bright'
 ];
 
@@ -49,19 +50,10 @@ function addPhraseToDisplay (text) {
     }
 };
 
-// Checks if a button in QWERTY is clicked and returns the text of that button
-qwerty.addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON') {
-        let buttonText = e.target.innerHTML;
-        return buttonText;
-    }
-});
-
-
 function checkLetter (value) {
 
-    // Store all of the li elements in a variable inside checkLetter
-     let listItems = phrase.querySelectorAll('li');
+    // Store all of the li elements in a variable inside checkLetter 
+    let listItems = phrase.querySelector('ul').childNodes;
 
     // Create a variable to store if a match is found and give it an initial value of null
     let match = null;
@@ -75,13 +67,20 @@ function checkLetter (value) {
             // If they match, add the “show” class to the li
             li.className = 'show';
             // If they match, store the button text in the match variable
-            match.push(listItems[i].textContent());
+            // match.push(listItems[i].textContent());
         }
     }
     // Once the loop completes, return the match variable
     return match;
-        
 }
+
+// Checks if a button in QWERTY is clicked and returns the text of that button
+qwerty.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') {
+        buttonText = e.target.innerHTML;
+    }
+});
+
 
 
 
