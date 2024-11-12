@@ -147,7 +147,7 @@ button {
 }
 
 .start a {
-  color: var(--color-win);
+  color: var(--color-keys);
 }
 
 .win {
