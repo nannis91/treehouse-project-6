@@ -51,7 +51,6 @@ function addPhraseToDisplay (text) {
 };
 
 function checkLetter (value) {
-
     // Store all of the li elements in a variable inside checkLetter 
     let listItems = phrase.querySelector('ul').childNodes;
 
@@ -63,25 +62,24 @@ function checkLetter (value) {
 
         // Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
         if (value === listItems[i].textContent) {
-            // If they match, add the “show” class to the li
             listItems[i].className = 'letter show';
-            // If they match, store the button text in the match variable
             (match = match || []).push(listItems[i].textContent);
-        } else {
-
         }
     }
-    // Once the loop completes, return the match variable
+
     return match;
 }
 
+// Function that checks if the player has won or lost
 function checkWin () {
     let letters = phrase.querySelectorAll('ul li.letter').length;
     let show = phrase.querySelectorAll('ul li.show').length;
     let ul = phrase.querySelector('ul');
     let buttons = qwerty.querySelectorAll('button');
     
+    // Win conditions
     if (show >= letters) {
+        // Brings back overlay and change texts and classes
         overlay.style.display = 'flex'
         overlay.querySelector('h2').textContent = "You won!"
         overlay.className = "win"
@@ -99,7 +97,9 @@ function checkWin () {
             tries[i].setAttribute("src", "images/liveHeart.png");
         }
 
+    // Loose conditions    
     } else if (missed >= 5) {
+        // Brings back overlay and change texts and classes
         overlay.style.display = 'flex'
         overlay.querySelector('h2').textContent = "You lost!"
         overlay.className = "lose"
@@ -134,14 +134,3 @@ qwerty.addEventListener('click', (e) => {
         checkWin();
   
 }});
-
-
-
-
-
-
- 
-    
-    
-
-
