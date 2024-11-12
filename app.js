@@ -1,19 +1,18 @@
 const qwerty = document.getElementById('qwerty');
 const tries = document.querySelectorAll('.tries img');
 const phrase = document.getElementById('phrase');
-const overlay = document.querySelector('#overlay');
+const overlay = document.getElementById('overlay');
 const btnReset = document.querySelector('.btn__reset');
 
 let missed = 0;
 
 // Phrases to guess for the game
 const phrases = [
-    // 'forest whispers softly', 
-    // 'golden sunlight warms',
-    // 'rivers flow gently',
-    // 'mountains stand tall',
-    // 'flowers bloom bright'
-    'hej'
+    'forest whispers softly', 
+    'golden sunlight warms',
+    'rivers flow gently',
+    'mountains stand tall',
+    'flowers bloom bright'
 ];
 
 // Event listner to the start game button.
@@ -60,7 +59,6 @@ function checkLetter (value) {
     let match = null;
     
     // Loop through all of the li elements. Remember: arrays start with index 0!
-
     for ( let i = 0; i < listItems.length; i++) {
 
         // Create a conditional that compares the text of the button parameter to the text of the li at the current index of the loop
@@ -85,22 +83,39 @@ function checkWin () {
     
     if (show >= letters) {
         overlay.style.display = 'flex'
+        overlay.querySelector('h2').textContent = "You won!"
+        overlay.className = "win"
+        overlay.querySelector("a").className = "btn__reset"
+        overlay.querySelector("a").textContent = "Play again"
         ul.innerHTML = '';
         missed = 0;
 
-
+        // Resets button classes
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].className = ''; 
         }
-        
+        // Resets heart images
         for (let i = 0; i < tries.length; i++) {
             tries[i].setAttribute("src", "images/liveHeart.png");
         }
 
-        
-
     } else if (missed >= 5) {
-        alert("Du har förlorat");
+        overlay.style.display = 'flex'
+        overlay.querySelector('h2').textContent = "You lost!"
+        overlay.className = "lose"
+        overlay.querySelector("a").className = "btn__reset loose a"
+        overlay.querySelector("a").textContent = "Try again"
+        ul.innerHTML = '';
+        missed = 0;
+
+        // Resets button classes
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].className = ''; 
+        }
+        // Resets heart images
+        for (let i = 0; i < tries.length; i++) {
+            tries[i].setAttribute("src", "images/liveHeart.png");
+        }
     }
 
 }
